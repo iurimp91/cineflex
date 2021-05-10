@@ -1,0 +1,19 @@
+body {
+    font-family: Roboto;
+}
+
+header {
+    width: 100%;
+    height: 67px;
+    background-color: #C3CFD9;
+    font-size: 34px;
+    color: #E8833A;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 4px 4px rgba(0, 0, 0, 0.25);
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+

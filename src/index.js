@@ -3,7 +3,9 @@ import ReactDOM from "react-dom";
 function App () {
     return (
         <>
-            oi
+            <header>
+                CINEFLEX
+            </header>
         </>
     );
 }
