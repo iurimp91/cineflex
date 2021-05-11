@@ -1,10 +1,11 @@
 import ReactDOM from "react-dom";
+import { BrowserRouter, Switch, Route } from "react-router-dom";
+
 import Header from "./components/Header";
 import MoviesContainer from "./components/MoviesContainer";
 import SessionsContainer from "./components/SessionsContainer";
 import SeatsContainer from "./components/SeatsContainer";
 import PurchaseOrderContainer from "./components/PurchaseOrderContainer";
-import { BrowserRouter, Switch, Route } from "react-router-dom";
 
 function App () {
     return (
