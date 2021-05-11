@@ -53,6 +53,15 @@ function App () {
                         </div>
                     </li>
                 </ul>
+                <div className="footer">
+                    <div className="footer-image-box">
+                    <img src="https://4.bp.blogspot.com/-35D6v4UpITg/WrrS9cw_yQI/AAAAAAABQ4Y/iSpYlbUT3nEDxS4rlRmXUzI7nf01MddNgCKgBGAs/s1600/IMG_9119.JPG" />
+                    </div>
+                    <div className="footer-text">
+                        <h3>Enola Holmes</h3>
+                        <h3>Quinta-feira - 15:00</h3>
+                    </div>
+                </div>
             </div>
 
             <div className="seats-container">
@@ -60,8 +69,26 @@ function App () {
                 <ul className="seats-row">
                     {assentos.map((assento) => <li className="seat">{assento}</li>)}
                 </ul>
-                <div className="seats-subtitle">
-                    <div><div className="seat"></div><span>Selecionado</span></div>
+                <div className="seats-subtitle-box">
+                    <div className="seat-subtitle"><div className="seat selected"></div><span>Selecionado</span></div>
+                    <div className="seat-subtitle"><div className="seat"></div><span>Disponível</span></div>
+                    <div className="seat-subtitle"><div className="seat unavailable"></div><span>Indisponível</span></div>
+                </div>
+                <div className="seats-buyer-box">
+                    <h2>Nome do comprador:</h2>
+                    <input type="text" placeholder="Digite seu nome..." />
+                    <h2>CPF do comprador:</h2>
+                    <input type="text" placeholder="Digite seu CPF..." />
+                </div>
+                <button>Reservar assento(s)</button>
+                <div className="footer">
+                    <div className="footer-image-box">
+                    <img src="https://4.bp.blogspot.com/-35D6v4UpITg/WrrS9cw_yQI/AAAAAAABQ4Y/iSpYlbUT3nEDxS4rlRmXUzI7nf01MddNgCKgBGAs/s1600/IMG_9119.JPG" />
+                    </div>
+                    <div className="footer-text">
+                        <h3>Enola Holmes</h3>
+                        <h3>Quinta-feira - 15:00</h3>
+                    </div>
                 </div>
             </div>
         </>
