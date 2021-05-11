@@ -17,7 +17,7 @@ header {
     left: 0;
 }
 
-.movies-container, .sessions-container, .seats-container {
+.movies-container, .sessions-container, .seats-container, .purchase-order-container {
     margin-top: 67px;
     display: flex;
     flex-direction: column;
@@ -187,7 +187,7 @@ h1 {
     color: #AFAFAF;
  }
 
-.seats-container button {
+.seats-container button, .purchase-order-container button {
     width: 225px;
     height: 42px;
     margin: 50px 0 30px 0;
@@ -199,7 +199,7 @@ h1 {
     border: none;
 }
 
-.seats-container button:active {
+.seats-container button:active, .purchase-order-container button:active {
     background-color: #E8730A;
 }
 
@@ -239,6 +239,34 @@ h1 {
     line-height: 30px;
 }
 
+.purchase-order-container h3 {
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    line-height: 28px;
+    color: #247A6B;
+    text-align: center;
+    margin: 30px 0 40px 0;
+}
+
+.purchase-order-info {
+    width: 100%;
+    padding-left: 30px;
+    margin-bottom: 30px;
+    color: #293845;
+    letter-spacing: 0.04em;
+}
+
+.purchase-order-info h4 {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.purchase-order-info h5 {
+    font-size: 22px;
+    line-height: 26px;
+}
 
 .escondido {
     display: none;
