@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 
 export default function MoviesContainer() {
     const [movies, setMovies] = useState([]);
@@ -16,10 +17,12 @@ export default function MoviesContainer() {
         <div className="movies-container">
             <h1>Selecione o filme</h1>
             <ul>
-                {movies.map((movie) => 
-                    <li key={movie.id}>
-                        <img src={movie.posterURL} />
-                    </li>
+                {movies.map((movie) =>
+                    <Link to={`/sessions/${movie.id}`}>
+                        <li key={movie.id}>
+                            <img src={movie.posterURL} />
+                        </li>
+                    </Link>
                 )}
             </ul>
         </div>
