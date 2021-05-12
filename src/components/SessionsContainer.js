@@ -14,6 +14,7 @@ export default function SessionsContainer() {
         promise.then((response) => {
             setSessions(response.data);
         });
+        console.log(sessions);
     }, []);
 
     if(sessions.length === 0) {
@@ -29,7 +30,7 @@ export default function SessionsContainer() {
                 <Session sessions={sessions} />
             </ul>
 
-            <Footer />
+            <Footer sessions={sessions} />
         </div>
     );
 }

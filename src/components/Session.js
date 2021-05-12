@@ -1,6 +1,7 @@
+import { Link } from "react-router-dom";
+
 export default function Session(props) {
     const sessionsDays = props.sessions.days;
-    console.log(sessionsDays);
     
     return (
         <>
@@ -9,7 +10,9 @@ export default function Session(props) {
                     <h2>{session.weekday} - {session.date}</h2>
                     <div className="sessions">
                         {session.showtimes.map((item) =>
-                            <div key={item.id} className="session">{item.name}</div>    
+                            <Link to={`/seats/${item.id}`}>
+                                <div key={item.id} className="session">{item.name}</div>    
+                            </Link>
                         )}
                     </div>
                 </li>

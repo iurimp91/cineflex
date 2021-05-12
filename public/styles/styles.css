@@ -109,7 +109,7 @@ h1 {
     padding-left: 24px;   
 }
 
-.seats-container .seats-row .seat, .seats-subtitle-box .seat {
+.seat {
     width: 26px;
     height: 26px;
     border: 1px solid #808F9D;
