@@ -14,6 +14,7 @@ export default function SeatsContainer() {
         promise.then((response) => {
             setSeats(response.data);
         });
+        console.log(seats);
     }, []);
 
     if(seats.length === 0) {
@@ -26,7 +27,9 @@ export default function SeatsContainer() {
         <div className="seats-container">
             <h1>Selecione o(s) assento(s)</h1>
             <ul className="seats-row">
-                <Seats seats={seats} />
+                {seats.seats.map(seats => 
+                    <Seats seats={seats} /> 
+                )}
             </ul>
             <div className="seats-subtitle-box">
                 <div className="seat-subtitle"><div className="seat selected"></div><span>Selecionado</span></div>

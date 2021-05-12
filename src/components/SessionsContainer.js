@@ -14,7 +14,6 @@ export default function SessionsContainer() {
         promise.then((response) => {
             setSessions(response.data);
         });
-        console.log(sessions);
     }, []);
 
     if(sessions.length === 0) {
