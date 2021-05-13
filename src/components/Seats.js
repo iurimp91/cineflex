@@ -2,11 +2,14 @@ import { useState } from "react";
 
 export default function Seats(props) {
     const sessionSeats = props.seats;
-    console.log(sessionSeats);
     const [isSelected, setIsSelected] = useState(false);
 
     function selectSeat() {
-        isSelected ? setIsSelected(false) : setIsSelected(true);
+        if(!sessionSeats.isAvailable) {
+            alert("Esse assento não está disponível")
+        } else {
+            isSelected ? setIsSelected(false) : setIsSelected(true);
+        }
     }
 
     let seatClass = "";
@@ -24,7 +27,7 @@ export default function Seats(props) {
 
     return(
         <>
-            <li key={sessionSeats.id} onClick={sessionSeats.isAvailable && selectSeat} className={seatClass}>
+            <li key={sessionSeats.id} onClick={selectSeat} className={seatClass}>
                 {sessionSeats.name}
             </li>
         </>
