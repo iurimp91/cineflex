@@ -24,7 +24,7 @@ export default function App() {
                     <SeatsContainer order={order} setOrder={setOrder} />
                 </Route>
                 <Route exact path="/success">
-                    <PurchaseOrderContainer />
+                    <PurchaseOrderContainer order={order} setOrder={setOrder} />
                 </Route>
             </Switch>
         </BrowserRouter>

@@ -12,7 +12,8 @@ export default function SeatsContainer(props) {
 
     const [name, setName] = useState("");
     const [cpf, setCpf] = useState("");
-    const [chosenSeats, setChosenSeats] = useState([]);
+    const [chosenSeatsID, setChosenSeatsID] = useState([]);
+    const [chosenSeatsNumber, setChosenSeatsNumber] =useState([]);
 
     useEffect(() => {
         const promise = axios.get(`https://mock-api.bootcamp.respondeai.com.br/api/v2/cineflex/showtimes/${sessionID}/seats`);
@@ -23,8 +24,6 @@ export default function SeatsContainer(props) {
         });
     }, []);
 
-    console.log(order);
-
     if(seats.length === 0) {
         return (
             <span>Carregando</span>
@@ -32,9 +31,9 @@ export default function SeatsContainer(props) {
     }
 
     function makeOrder() {
-        const orderData = { ids: chosenSeats, name: name, cpf: cpf }
+        const orderData = { ids: chosenSeatsID, name: name, cpf: cpf }
         const promise = axios.post('https://mock-api.bootcamp.respondeai.com.br/api/v2/cineflex/seats/book-many', orderData)
-        console.log(orderData);
+        setOrder({...order, name: name, cpf: cpf, seats: chosenSeatsNumber})
     }
 
     return(
@@ -42,7 +41,7 @@ export default function SeatsContainer(props) {
             <h1>Selecione o(s) assento(s)</h1>
             <ul className="seats-row">
                 {seats.seats.map(seats => 
-                    <Seats seats={seats} chosenSeats={chosenSeats} setChosenSeats={setChosenSeats} /> 
+                    <Seats seats={seats} chosenSeatsID={chosenSeatsID} setChosenSeatsID={setChosenSeatsID} chosenSeatsNumber={chosenSeatsNumber} setChosenSeatsNumber={setChosenSeatsNumber} /> 
                 )}
             </ul>
             <div className="seats-subtitle-box">

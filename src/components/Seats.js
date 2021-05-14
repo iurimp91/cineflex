@@ -9,12 +9,13 @@ export default function Seats(props) {
             alert("Esse assento não está disponível")
         } else if(!isSelected) {
             setIsSelected(true);
-            const newArray = [...props.chosenSeats, sessionSeats.id];
-            props.setChosenSeats(newArray);
+            props.setChosenSeatsID([...props.chosenSeatsID, sessionSeats.id]);
+            props.setChosenSeatsNumber([...props.chosenSeatsNumber, sessionSeats.name]);
         } else {
             setIsSelected(false);
-            const i = props.chosenSeats.findIndex((id) => id === sessionSeats.id)
-            props.chosenSeats.splice(i, 1);
+            const i = props.chosenSeatsID.findIndex((id) => id === sessionSeats.id)
+            props.chosenSeatsID.splice(i, 1);
+            props.chosenSeatsNumber.splice(i, 1);
         }
     }
 

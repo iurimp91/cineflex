@@ -18,8 +18,6 @@ export default function SessionsContainer(props) {
         });
     }, []);
 
-    console.log(order);
-
     if(sessions.length === 0) {
         return (
             <span>Carregando</span>
