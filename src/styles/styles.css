@@ -17,6 +17,19 @@ header {
     left: 0;
 }
 
+header img {
+    width: 30px;
+    height: 30px;
+    background-color: transparent;
+    position: absolute;
+    left: 15px;
+    cursor: pointer;
+}
+
+header img:hover {
+    opacity: 0.7;
+}
+
 .movies-container, .sessions-container, .seats-container, .purchase-order-container {
     margin-top: 67px;
     display: flex;
