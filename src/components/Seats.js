@@ -7,8 +7,14 @@ export default function Seats(props) {
     function selectSeat() {
         if(!sessionSeats.isAvailable) {
             alert("Esse assento não está disponível")
+        } else if(!isSelected) {
+            setIsSelected(true);
+            const newArray = [...props.chosenSeats, sessionSeats.id];
+            props.setChosenSeats(newArray);
         } else {
-            isSelected ? setIsSelected(false) : setIsSelected(true);
+            setIsSelected(false);
+            const i = props.chosenSeats.findIndex((id) => id === sessionSeats.id)
+            props.chosenSeats.splice(i, 1);
         }
     }
 

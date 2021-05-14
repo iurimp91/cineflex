@@ -11,6 +11,7 @@ export default function SeatsContainer() {
 
     const [name, setName] = useState("");
     const [cpf, setCpf] = useState("");
+    const [chosenSeats, setChosenSeats] = useState([]);
 
     useEffect(() => {
         const promise = axios.get(`https://mock-api.bootcamp.respondeai.com.br/api/v2/cineflex/showtimes/${sessionID}/seats`);
@@ -26,12 +27,18 @@ export default function SeatsContainer() {
         );
     }
 
+    function makeOrder() {
+        const orderData = { ids: chosenSeats, name: name, cpf: cpf }
+        const promise = axios.post('https://mock-api.bootcamp.respondeai.com.br/api/v2/cineflex/seats/book-many', orderData)
+        console.log(orderData);
+    }
+
     return(
         <div className="seats-container">
             <h1>Selecione o(s) assento(s)</h1>
             <ul className="seats-row">
                 {seats.seats.map(seats => 
-                    <Seats seats={seats} /> 
+                    <Seats seats={seats} chosenSeats={chosenSeats} setChosenSeats={setChosenSeats} /> 
                 )}
             </ul>
             <div className="seats-subtitle-box">
@@ -42,8 +49,9 @@ export default function SeatsContainer() {
             <div className="seats-buyer-box">
                 <SeatsBuyerBox name={name} setName={setName} cpf={cpf} setCpf={setCpf} />
             </div>
-            <button>Reservar assento(s)</button>
-
+            <Link to={`/success`}>
+                <button onClick={makeOrder}>Reservar assento(s)</button>
+            </Link>
             {/*<Footer />*/}
         </div>
     );
