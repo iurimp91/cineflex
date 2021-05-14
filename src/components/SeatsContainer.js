@@ -5,9 +5,10 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import Seats from "./Seats";
 
-export default function SeatsContainer() {
+export default function SeatsContainer(props) {
     const [seats, setSeats] = useState([]);
     const { sessionID } = useParams();
+    const { order, setOrder } = props;
 
     const [name, setName] = useState("");
     const [cpf, setCpf] = useState("");
@@ -18,8 +19,11 @@ export default function SeatsContainer() {
 
         promise.then((response) => {
             setSeats(response.data);
+            setOrder({...order, hour: response.data.name, weekday: response.data.day.weekday, date: response.data.day.date});
         });
     }, []);
+
+    console.log(order);
 
     if(seats.length === 0) {
         return (
@@ -49,10 +53,10 @@ export default function SeatsContainer() {
             <div className="seats-buyer-box">
                 <SeatsBuyerBox name={name} setName={setName} cpf={cpf} setCpf={setCpf} />
             </div>
-            <Link to={`/success`}>
+            <Link to={`/success`} >
                 <button onClick={makeOrder}>Reservar assento(s)</button>
             </Link>
-            {/*<Footer />*/}
+            <Footer order={order} />
         </div>
     );
 }

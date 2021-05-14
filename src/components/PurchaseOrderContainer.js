@@ -1,4 +1,9 @@
+import { Link, useParams } from "react-router-dom";
+
 export default function PurchaseOrderContainer() {
+    const iuri = useParams();
+    console.log(iuri);
+
     return(
         <div className="purchase-order-container">
             <h3>Pedido feito<br />com sucesso!</h3>
@@ -17,7 +22,9 @@ export default function PurchaseOrderContainer() {
                 <h5>Nome: Iuri da Silva Sauro</h5>
                 <h5>CPF: 123-456-789-10</h5>
             </div>
-            <button>Voltar para Home</button>
+            <Link to="/">
+                <button>Voltar para Home</button>
+            </Link>
         </div>
     );
 }
