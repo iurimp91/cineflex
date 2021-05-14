@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 
 export default function PurchaseOrderContainer(props) {
-    const { title, date, hour, seats, name, cpf } = props.order;
+    const { title, date, hour, buyers } = props.order;
 
     return(
         <div className="purchase-order-container">
@@ -13,14 +13,18 @@ export default function PurchaseOrderContainer(props) {
             </div>
             <div className="purchase-order-info">
                 <h4>Ingressos</h4>
-                {seats.map((seat) => 
-                    <h5>Assento {seat}</h5>
+                {buyers.map((buyer) => 
+                    <h5>Assento {buyer.number}</h5>
                 )}
                 </div>
             <div className="purchase-order-info">
-                <h4>Comprador</h4>
-                <h5>Nome: {name}</h5>
-                <h5>CPF: {cpf}</h5>
+                <h4>Compradores</h4>
+                {buyers.map((buyer) =>
+                    <>
+                        <h5>Nome: {buyer.name}</h5>
+                        <h5>CPF: {buyer.cpf}</h5>
+                    </>
+                )}
             </div>
             <Link to="/">
                 <button>Voltar para Home</button>

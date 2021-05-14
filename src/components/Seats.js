@@ -2,7 +2,7 @@ import SeatsContainer from "./SeatsContainer";
 import { useState } from "react";
 
 export default function Seats(props) {
-    const { seats, chosenSeatsID, setChosenSeatsID, chosenSeatsNumber, setChosenSeatsNumber } = props;
+    const { seats, chosenSeatsID, setChosenSeatsID, chosenSeatsNumber, setChosenSeatsNumber, buyers, setBuyers } = props;
     const [isSelected, setIsSelected] = useState(false);
 
     function selectSeat() {
@@ -12,22 +12,20 @@ export default function Seats(props) {
             setIsSelected(true);
             setChosenSeatsID([...chosenSeatsID, seats.id]);
             setChosenSeatsNumber([...chosenSeatsNumber, seats.name]);
+            setBuyers([...buyers, {id: seats.id, number: seats.name}]);
         } else {
-            setIsSelected(false);
-            if(chosenSeatsID.length === 1) {
-                setChosenSeatsID([])
-                setChosenSeatsNumber([])
-            } else {
+            if(window.confirm("Tem certeza que quer desmarcar esse assento?")) {
+                setIsSelected(false);
                 const i = chosenSeatsID.findIndex((id) => id === seats.id)
                 const arrayID = chosenSeatsID.filter((item, j) => j !== i);
                 const arrayNumber = chosenSeatsNumber.filter((item, j) => j !== i);
+                const arrayBuyers = buyers.filter((item, j) => j !== i);
                 setChosenSeatsID([...arrayID]);
                 setChosenSeatsNumber([...arrayNumber]);
+                setBuyers([...arrayBuyers]);
             }
         }
     }
-
-    console.log(isSelected)
 
     let seatClass = "";
     function selectClass() {
