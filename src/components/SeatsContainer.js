@@ -36,6 +36,10 @@ export default function SeatsContainer(props) {
         setOrder({...order, name: name, cpf: cpf, seats: chosenSeatsNumber})
     }
 
+    console.log(chosenSeatsID.length);
+    console.log(chosenSeatsID);
+    console.log(chosenSeatsNumber);
+
     return(
         <div className="seats-container">
             <h1>Selecione o(s) assento(s)</h1>
@@ -50,7 +54,13 @@ export default function SeatsContainer(props) {
                 <div className="seat-subtitle"><div className="seat unavailable"></div><span>Indisponível</span></div>
             </div>
             <div className="seats-buyer-box">
-                <SeatsBuyerBox name={name} setName={setName} cpf={cpf} setCpf={setCpf} />
+                {chosenSeatsID.map((item, i) => { 
+                    if(chosenSeatsID.length === 0) {
+                        return <div></div>;
+                    } else {
+                        return <SeatsBuyerBox name={name} setName={setName} cpf={cpf} setCpf={setCpf} chosenSeatsNumber={chosenSeatsNumber[i]} />;
+                    }
+                })}
             </div>
             <Link to={`/success`} >
                 <button onClick={makeOrder}>Reservar assento(s)</button>

@@ -4,13 +4,15 @@ import { useHistory } from "react-router-dom";
 export default function Header() {
     let history = useHistory();
 
+    console.log(history);
+
     function goBack() {
         history.goBack();
     }
 
     return(
         <header>
-            <img src={arrow} onClick={goBack} />
+            {history.location.pathname === "/" ? "" : <img src={arrow} onClick={goBack} />}
             <div>
                 CINEFLEX
             </div>

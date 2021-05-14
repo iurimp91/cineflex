@@ -181,10 +181,17 @@ h1 {
     padding: 0 24px;
 }
 
-.seats-buyer-box h2 {
+.seats-buyer-box h3 {
     font-size: 18px;
     color: #293845;
     margin-bottom: 3px;
+}
+
+.seats-buyer-box h2 {
+    color: #293845;
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 5px;
 }
 
 .seats-buyer-box input {

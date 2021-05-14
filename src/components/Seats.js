@@ -1,27 +1,37 @@
+import SeatsContainer from "./SeatsContainer";
 import { useState } from "react";
 
 export default function Seats(props) {
-    const sessionSeats = props.seats;
+    const { seats, chosenSeatsID, setChosenSeatsID, chosenSeatsNumber, setChosenSeatsNumber } = props;
     const [isSelected, setIsSelected] = useState(false);
 
     function selectSeat() {
-        if(!sessionSeats.isAvailable) {
+        if(!seats.isAvailable) {
             alert("Esse assento não está disponível")
         } else if(!isSelected) {
             setIsSelected(true);
-            props.setChosenSeatsID([...props.chosenSeatsID, sessionSeats.id]);
-            props.setChosenSeatsNumber([...props.chosenSeatsNumber, sessionSeats.name]);
+            setChosenSeatsID([...chosenSeatsID, seats.id]);
+            setChosenSeatsNumber([...chosenSeatsNumber, seats.name]);
         } else {
             setIsSelected(false);
-            const i = props.chosenSeatsID.findIndex((id) => id === sessionSeats.id)
-            props.chosenSeatsID.splice(i, 1);
-            props.chosenSeatsNumber.splice(i, 1);
+            if(chosenSeatsID.length === 1) {
+                setChosenSeatsID([])
+                setChosenSeatsNumber([])
+            } else {
+                const i = chosenSeatsID.findIndex((id) => id === seats.id)
+                const arrayID = chosenSeatsID.filter((item, j) => j !== i);
+                const arrayNumber = chosenSeatsNumber.filter((item, j) => j !== i);
+                setChosenSeatsID([...arrayID]);
+                setChosenSeatsNumber([...arrayNumber]);
+            }
         }
     }
 
+    console.log(isSelected)
+
     let seatClass = "";
     function selectClass() {
-        if(!sessionSeats.isAvailable) {
+        if(!seats.isAvailable) {
             seatClass = "seat unavailable";
         } else if(isSelected) {
             seatClass = "seat selected"
@@ -34,8 +44,8 @@ export default function Seats(props) {
 
     return(
         <>
-            <li key={sessionSeats.id} onClick={selectSeat} className={seatClass}>
-                {sessionSeats.name}
+            <li key={seats.id} onClick={selectSeat} className={seatClass}>
+                {seats.name}
             </li>
         </>
     );
