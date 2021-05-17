@@ -23,7 +23,7 @@ export default function App() {
                 <Route exact path="/assentos/:idSessao">
                     <SeatsContainer order={order} setOrder={setOrder} />
                 </Route>
-                <Route exact path="/successo">
+                <Route exact path="/sucesso">
                     <PurchaseOrderContainer order={order} setOrder={setOrder} />
                 </Route>
             </Switch>

@@ -1,11 +1,12 @@
 import Footer from "./Footer";
 import SeatsBuyerBox from "./SeatsBuyerBox";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useHistory } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import Seats from "./Seats";
 
 export default function SeatsContainer(props) {
+    let history = useHistory();
     const [seats, setSeats] = useState([]);
     const { idSessao } = useParams();
     const { order, setOrder } = props;
@@ -43,12 +44,18 @@ export default function SeatsContainer(props) {
 
     function makeOrder() {
         makeBuyersArray(); 
+
+        if (buyersArray.length === 0) {
+            alert("Please, select your seats and input your data.");
+            return;
+        }
+
         const orderData = { ids: chosenSeatsID, compradores: buyersArray }
         const promise = axios.post('https://mock-api.bootcamp.respondeai.com.br/api/v2/cineflex/seats/book-many', orderData)
         setOrder({...order, buyers});
 
         promise.then(response => {
-            alert("Tickets bought! Enjoy your movie!")
+            history.push("/sucesso");
         })
 
         promise.catch(error => {
@@ -78,9 +85,9 @@ export default function SeatsContainer(props) {
                     }
                 })}
             </div>
-            <Link to={`/successo`} >
-                <button onClick={makeOrder}>Reservar assento(s)</button>
-            </Link>
+            
+            <button onClick={makeOrder}>Reservar assento(s)</button>
+
             <Footer order={order} />
         </div>
     );
