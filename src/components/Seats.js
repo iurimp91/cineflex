@@ -1,4 +1,3 @@
-import SeatsContainer from "./SeatsContainer";
 import { useState } from "react";
 
 export default function Seats(props) {

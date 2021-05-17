@@ -1,6 +1,6 @@
 import Footer from "./Footer";
 import SeatsBuyerBox from "./SeatsBuyerBox";
-import { Link, useParams, useHistory } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import Seats from "./Seats";
@@ -28,7 +28,7 @@ export default function SeatsContainer(props) {
         promise.catch((error) => {
             alert("Something went wrong. Please, reload the page.")
         })
-    }, []);
+    }, [idSessao]);
 
     if(seats.length === 0) {
         return (
@@ -45,14 +45,14 @@ export default function SeatsContainer(props) {
     function makeOrder() {
         makeBuyersArray(); 
 
+        const orderData = { ids: chosenSeatsID, compradores: buyersArray }
+        const promise = axios.post('https://mock-api.bootcamp.respondeai.com.br/api/v2/cineflex/seats/book-many', orderData)
+        setOrder({...order, buyers});
+        
         if (buyersArray.length === 0) {
             alert("Please, select your seats and input your data.");
             return;
         }
-
-        const orderData = { ids: chosenSeatsID, compradores: buyersArray }
-        const promise = axios.post('https://mock-api.bootcamp.respondeai.com.br/api/v2/cineflex/seats/book-many', orderData)
-        setOrder({...order, buyers});
 
         promise.then(response => {
             history.push("/sucesso");
@@ -68,7 +68,7 @@ export default function SeatsContainer(props) {
             <h1>Selecione o(s) assento(s)</h1>
             <ul className="seats-row">
                 {seats.seats.map(seats => 
-                    <Seats buyers={buyers} setBuyers={setBuyers} seats={seats} chosenSeatsID={chosenSeatsID} setChosenSeatsID={setChosenSeatsID} chosenSeatsNumber={chosenSeatsNumber} setChosenSeatsNumber={setChosenSeatsNumber} /> 
+                    <Seats key={seats.id} buyers={buyers} setBuyers={setBuyers} seats={seats} chosenSeatsID={chosenSeatsID} setChosenSeatsID={setChosenSeatsID} chosenSeatsNumber={chosenSeatsNumber} setChosenSeatsNumber={setChosenSeatsNumber} /> 
                 )}
             </ul>
             <div className="seats-subtitle-box">
@@ -81,7 +81,7 @@ export default function SeatsContainer(props) {
                     if(chosenSeatsID.length === 0) {
                         return <div></div>;
                     } else {
-                        return <SeatsBuyerBox buyers={buyers} setBuyers={setBuyers} name={name} setName={setName} cpf={cpf} setCpf={setCpf} chosenSeatsNumber={chosenSeatsNumber[i]} />;
+                        return <SeatsBuyerBox key={i} buyers={buyers} setBuyers={setBuyers} name={name} setName={setName} cpf={cpf} setCpf={setCpf} chosenSeatsNumber={chosenSeatsNumber[i]} />;
                     }
                 })}
             </div>

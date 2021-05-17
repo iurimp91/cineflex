@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 export default function SeatsBuyerBox(props) {
-    const { name, setName, cpf, setCpf, chosenSeatsNumber, buyers, setBuyers } = props;
+    const { chosenSeatsNumber, buyers, setBuyers } = props;
     const [unicName, setUnicName] = useState("");
     const [unicCpf, setUnicCpf] = useState("");
 

@@ -5,7 +5,7 @@ export default function Footer(props) {
     return(
         <div className="footer">
             <div className="footer-image-box">
-            <img src={props.order.posterURL} />
+            <img src={props.order.posterURL} alt={props.order.title} />
             </div>
             <FooterText order={props.order}>
                 <h3>{props.order.title}</h3>

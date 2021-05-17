@@ -1,6 +1,6 @@
 import Footer from "./Footer";
 import Session from "./Session";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import axios from "axios";
 import { useState, useEffect } from "react"; 
 
@@ -20,7 +20,7 @@ export default function SessionsContainer(props) {
         promise.catch((error) => {
             alert("Something went wrong. Please, reload the page.");
         })
-    }, []);
+    }, [idFilme, setOrder]);
 
     if(sessions.length === 0) {
         return (

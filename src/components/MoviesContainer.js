@@ -22,9 +22,9 @@ export default function MoviesContainer() {
             <h1>Selecione o filme</h1>
             <ul>
                 {movies.map((movie) =>
-                    <Link to={`/sessoes/${movie.id}`}>
+                    <Link key={movie.id} to={`/sessoes/${movie.id}`}>
                         <li key={movie.id}>
-                            <img src={movie.posterURL} />
+                            <img src={movie.posterURL} alt={movie.title} />
                         </li>
                     </Link>
                 )}

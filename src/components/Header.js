@@ -10,7 +10,7 @@ export default function Header() {
 
     return(
         <header>
-            {history.location.pathname === "/" ? "" : <img src={arrow} onClick={goBack} />}
+            {history.location.pathname === "/" ? "" : <img src={arrow} onClick={goBack} alt={"arrow back"} />}
             <div>
                 CINEFLEX
             </div>

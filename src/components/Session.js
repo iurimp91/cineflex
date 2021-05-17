@@ -10,7 +10,7 @@ export default function Session(props) {
                     <h2>{session.weekday} - {session.date}</h2>
                     <div className="sessions">
                         {session.showtimes.map((item) =>
-                            <Link to={`/assentos/${item.id}`} style={{ textDecoration: 'none' }}>
+                            <Link key={item.id} to={`/assentos/${item.id}`} style={{ textDecoration: 'none' }}>
                                 <div key={item.id} className="session"><span>{item.name}</span></div>    
                             </Link>
                         )}
