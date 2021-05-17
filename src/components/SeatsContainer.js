@@ -7,7 +7,7 @@ import Seats from "./Seats";
 
 export default function SeatsContainer(props) {
     const [seats, setSeats] = useState([]);
-    const { sessionID } = useParams();
+    const { idSessao } = useParams();
     const { order, setOrder } = props;
 
     const [buyers, setBuyers] = useState([]);
@@ -17,12 +17,16 @@ export default function SeatsContainer(props) {
     const [chosenSeatsNumber, setChosenSeatsNumber] =useState([]);
 
     useEffect(() => {
-        const promise = axios.get(`https://mock-api.bootcamp.respondeai.com.br/api/v2/cineflex/showtimes/${sessionID}/seats`);
+        const promise = axios.get(`https://mock-api.bootcamp.respondeai.com.br/api/v2/cineflex/showtimes/${idSessao}/seats`);
 
         promise.then((response) => {
             setSeats(response.data);
             setOrder({...order, hour: response.data.name, weekday: response.data.day.weekday, date: response.data.day.date});
         });
+
+        promise.catch((error) => {
+            alert("Something went wrong. Please, reload the page.")
+        })
     }, []);
 
     if(seats.length === 0) {
@@ -41,7 +45,15 @@ export default function SeatsContainer(props) {
         makeBuyersArray(); 
         const orderData = { ids: chosenSeatsID, compradores: buyersArray }
         const promise = axios.post('https://mock-api.bootcamp.respondeai.com.br/api/v2/cineflex/seats/book-many', orderData)
-        setOrder({...order, buyers})
+        setOrder({...order, buyers});
+
+        promise.then(response => {
+            alert("Tickets bought! Enjoy your movie!")
+        })
+
+        promise.catch(error => {
+            alert("Something went wrong. Please, try again.");
+        })
     }
 
     return(
@@ -66,7 +78,7 @@ export default function SeatsContainer(props) {
                     }
                 })}
             </div>
-            <Link to={`/success`} >
+            <Link to={`/successo`} >
                 <button onClick={makeOrder}>Reservar assento(s)</button>
             </Link>
             <Footer order={order} />

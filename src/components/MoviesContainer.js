@@ -11,6 +11,10 @@ export default function MoviesContainer() {
         promise.then((response) => {
             setMovies(response.data);
         });
+
+        promise.catch((error) => {
+            alert("Something went wrong. Please, reload the page.");
+        })
     }, []);
 
     return(
@@ -18,7 +22,7 @@ export default function MoviesContainer() {
             <h1>Selecione o filme</h1>
             <ul>
                 {movies.map((movie) =>
-                    <Link to={`/sessions/${movie.id}`}>
+                    <Link to={`/sessoes/${movie.id}`}>
                         <li key={movie.id}>
                             <img src={movie.posterURL} />
                         </li>

@@ -17,13 +17,13 @@ export default function App() {
                 <Route exact path="/">
                     <MoviesContainer />
                 </Route>
-                <Route exact path="/sessions/:movieID">
+                <Route exact path="/sessoes/:idFilme">
                     <SessionsContainer order={order} setOrder={setOrder} />
                 </Route>
-                <Route exact path="/seats/:sessionID">
+                <Route exact path="/assentos/:idSessao">
                     <SeatsContainer order={order} setOrder={setOrder} />
                 </Route>
-                <Route exact path="/success">
+                <Route exact path="/successo">
                     <PurchaseOrderContainer order={order} setOrder={setOrder} />
                 </Route>
             </Switch>
